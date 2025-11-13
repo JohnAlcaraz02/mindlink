@@ -1,11 +1,11 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MoodController;
-use App\Http\Controllers\JournalController;
 use App\Http\Controllers\ChatController;
-use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\JournalController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 // Guest routes (not authenticated)
@@ -21,23 +21,43 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     
-    // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     
-    // Mood Check-in
+    // Mood tracking routes
     Route::post('/mood', [MoodController::class, 'store'])->name('mood.store');
     
-    // Journal
-    Route::resource('journal', JournalController::class);
+    // Journal routes
+    Route::prefix('journal')->name('journal.')->group(function() {
+        Route::get('/', [JournalController::class, 'index'])->name('index');
+        Route::post('/store', [JournalController::class, 'store'])->name('store');
+        Route::get('/{id}', [JournalController::class, 'show'])->name('show');
+        Route::put('/{id}', [JournalController::class, 'update'])->name('update');
+        Route::delete('/{id}', [JournalController::class, 'destroy'])->name('destroy');
+    });
     
-    // Anonymous Chat
-    Route::get('/chat/anonymous', [ChatController::class, 'anonymous'])->name('chat.anonymous');
+    // Chat routes
+    Route::prefix('chat')->name('chat.')->group(function() {
+        // Directly send users to anonymous chat (remove picker)
+        Route::get('/', function() {
+            return redirect()->route('chat.anonymous');
+        })->name('index');
+        Route::get('/anonymous', [ChatController::class, 'anonymous'])->name('anonymous');
+        Route::post('/send', [ChatController::class, 'sendMessage'])->name('send');
+        // AI chat
+        Route::get('/ai', [ChatController::class, 'ai'])->name('ai');
+        Route::post('/ai/send', [ChatController::class, 'sendAi'])->name('ai.send');
+    });
     
-    // Resources
-    Route::resource('resources', ResourceController::class)->only(['index', 'show']);
+    // Resources routes (placeholder)
+    Route::get('/resources', function() {
+        return view('resources.index');
+    })->name('resources.index');
+    
+    // Admin routes
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
 
-// Redirect root to dashboard if authenticated, otherwise to login
+// Redirect root to login
 Route::get('/', function () {
-    return auth()->check() ? redirect()->route('dashboard') : redirect()->route('login');
+    return redirect()->route('login');
 });

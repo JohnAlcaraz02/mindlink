@@ -11,7 +11,8 @@ class MoodController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'mood' => 'required|integer|min:1|max:5'
+            'mood' => 'required|integer|min:1|max:5',
+            'note' => 'nullable|string|max:500'
         ]);
 
         // Check if user already checked in today
@@ -23,7 +24,8 @@ class MoodController extends Controller
         if ($existingCheckin) {
             // Update existing check-in
             $existingCheckin->update([
-                'mood_value' => $request->mood
+                'mood_value' => $request->mood,
+                'note' => $request->note
             ]);
             
             return redirect()->route('dashboard')
@@ -34,6 +36,7 @@ class MoodController extends Controller
         MoodCheckin::create([
             'user_id' => auth()->id(),
             'mood_value' => $request->mood,
+            'note' => $request->note
         ]);
 
         return redirect()->route('dashboard')

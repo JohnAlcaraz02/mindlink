@@ -44,11 +44,17 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
+        // Debug: Log what was received
+        \Log::info('Registration attempt', [
+            'user_type' => $request->user_type,
+            'all_data' => $request->all()
+        ]);
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Password::min(8)],
-            'user_type' => 'required|in:Student,Volunteer Counselor,Administrator',
+            'user_type' => 'required|in:Student,Administrator',
         ]);
 
         $user = User::create([

@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    // OpenAI-compatible (Ollama / others)
+    'openai' => [
+        'key' => env('OPENAI_API_KEY'),
+        'model' => env('OPENAI_MODEL', 'llama3.2:3b'),
+        'base' => env('OPENAI_BASE', 'http://localhost:11434/v1'),
+    ],
+
 ];

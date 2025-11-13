@@ -191,8 +191,9 @@
             <div class="form-group">
                 <label for="user_type">I am a...</label>
                 <select id="user_type" name="user_type" required>
-                    <option value="Student" {{ old('user_type') == 'Student' ? 'selected' : '' }}>Student</option>
-                    <option value="Administrator" {{ old('user_type') == 'Administrator' ? 'selected' : '' }}>Administrator</option>
+                    <option value="">Select your role</option>
+                    <option value="Student" {{ old('user_type', '') == 'Student' ? 'selected' : '' }}>Student</option>
+                    <option value="Administrator" {{ old('user_type', '') == 'Administrator' ? 'selected' : '' }}>Administrator</option>
                 </select>
                 @error('user_type')
                     <div class="error">{{ $message }}</div>
