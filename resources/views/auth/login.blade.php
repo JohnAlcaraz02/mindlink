@@ -13,7 +13,8 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            /* background image with a soft red gradient overlay. Put your background image at public/images/auth-bg.jpg */
+            background: linear-gradient(135deg, rgba(255,117,117,0.35) 0%, rgba(255,255,255,0.6) 100%), url("{{ asset('images/auth-bg.jpg') }}") center/cover no-repeat fixed;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -33,13 +34,20 @@
         .logo {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            background: none;
             border-radius: 20px;
             margin: 0 auto 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 40px;
+            overflow: hidden;
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         h1 {
@@ -83,7 +91,7 @@
         input:focus,
         select:focus {
             outline: none;
-            border-color: #a855f7;
+            border-color: #ff0000;
             background: white;
         }
 
@@ -104,7 +112,7 @@
         .btn-primary {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+            background: linear-gradient(135deg, #ff8383 0%, #ffc6c6 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -138,7 +146,7 @@
         }
 
         .link-text a {
-            color: #a855f7;
+            color: #ff0000;
             text-decoration: none;
             font-weight: 600;
         }
@@ -150,7 +158,9 @@
 </head>
 <body>
     <div class="container">
-        <div class="logo">🧠</div>
+        <div class="logo">
+            <img src="{{ asset('images/logo.png') }}" alt="MindLink logo">
+        </div>
         <h1>Welcome to MindLink</h1>
         <p class="subtitle">Your safe space for mental health support and well-being</p>
 
