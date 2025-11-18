@@ -10,24 +10,40 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
+        // Get selected college from request
+        $selectedCollege = $request->input('college', 'all');
+
+        // Build base query for users
+        $userQuery = User::where('user_type', 'Student');
+        if ($selectedCollege !== 'all') {
+            $userQuery->where('college', $selectedCollege);
+        }
+
+        // Get user IDs for filtered college
+        $filteredUserIds = $userQuery->pluck('id');
+
         // Total users
-        $totalUsers = User::count();
-        $activeToday = User::whereDate('updated_at', today())->count();
-        
-        // Journal entries
-        $totalJournalEntries = JournalEntry::count();
-        
-        // Chat messages
-        $totalChatMessages = ChatMessage::count();
-        
-        // Average mood (from mood check-ins)
-        $averageMood = \App\Models\MoodCheckin::avg('mood_value');
+        $totalUsers = $userQuery->count();
+        $activeToday = $userQuery->whereDate('updated_at', today())->count();
+
+        // Journal entries (filtered by college users)
+        $totalJournalEntries = JournalEntry::whereIn('user_id', $filteredUserIds)->count();
+
+        // Chat messages (filtered by college users)
+        $totalChatMessages = ChatMessage::whereIn('user_id', $filteredUserIds)->count();
+
+        // Average mood (from mood check-ins, filtered by college)
+        $averageMood = \App\Models\MoodCheckin::whereIn('user_id', $filteredUserIds)->avg('mood_value');
         $averageMood = $averageMood ? round($averageMood, 1) : 0;
-        
-        // Popular topics - get all tags and count frequency
-        $allTags = JournalEntry::whereNotNull('tags')
+
+        // Get college statistics for comparison
+        $collegeStats = $this->getCollegeStats();
+
+        // Popular topics - get all tags and count frequency (filtered)
+        $allTags = JournalEntry::whereIn('user_id', $filteredUserIds)
+            ->whereNotNull('tags')
             ->pluck('tags')
             ->flatMap(function($tags) {
                 return array_map('trim', explode(',', $tags));
@@ -36,23 +52,23 @@ class AdminController extends Controller
             ->countBy()
             ->sortDesc()
             ->take(10);
-        
+
         $topicLabels = $allTags->keys()->toArray();
         $topicData = $allTags->values()->toArray();
-        
+
         // 7-day activity data
         $activityData = $this->getActivityData();
-        
+
         // Chat room activity (last 24h) - grouped by room/topic
         $chatRoomActivity = $this->getChatRoomActivity();
-        
+
         // Feature engagement - calculate percentage of users who used each feature
         $featureEngagement = $this->getFeatureEngagement();
-        
+
         // Well-being data
         $moodDistribution = $this->getMoodDistribution();
         $insights = $this->getInsights();
-        
+
         return view('admin.dashboard', compact(
             'totalUsers',
             'activeToday',
@@ -65,8 +81,65 @@ class AdminController extends Controller
             'chatRoomActivity',
             'featureEngagement',
             'moodDistribution',
-            'insights'
+            'insights',
+            'selectedCollege',
+            'collegeStats'
         ));
+    }
+
+    private function getCollegeStats()
+    {
+        $colleges = [
+            'College of Engineering',
+            'College of Engineering Technology',
+            'College of Informatics and Computing Sciences',
+            'College of Architecture, Fine Arts and Design'
+        ];
+
+        $stats = [];
+
+        foreach ($colleges as $college) {
+            $userIds = User::where('college', $college)->pluck('id');
+            $avgMood = \App\Models\MoodCheckin::whereIn('user_id', $userIds)->avg('mood_value');
+            $studentCount = $userIds->count();
+
+            $stats[] = [
+                'name' => $college,
+                'short_name' => $this->getCollegeShortName($college),
+                'avg_mood' => $avgMood ? round($avgMood, 1) : 0,
+                'student_count' => $studentCount,
+                'stress_level' => $avgMood ? $this->calculateStressLevel($avgMood) : 'No Data'
+            ];
+        }
+
+        // Sort by average mood (ascending = more stressed)
+        usort($stats, function($a, $b) {
+            if ($a['avg_mood'] == 0) return 1;
+            if ($b['avg_mood'] == 0) return -1;
+            return $a['avg_mood'] <=> $b['avg_mood'];
+        });
+
+        return $stats;
+    }
+
+    private function getCollegeShortName($college)
+    {
+        $shortNames = [
+            'College of Engineering' => 'COE',
+            'College of Engineering Technology' => 'CET',
+            'College of Informatics and Computing Sciences' => 'CICS',
+            'College of Architecture, Fine Arts and Design' => 'CAFAD'
+        ];
+
+        return $shortNames[$college] ?? $college;
+    }
+
+    private function calculateStressLevel($avgMood)
+    {
+        if ($avgMood >= 4) return 'Low Stress';
+        if ($avgMood >= 3) return 'Moderate Stress';
+        if ($avgMood >= 2) return 'High Stress';
+        return 'Very High Stress';
     }
     
     private function getActivityData()

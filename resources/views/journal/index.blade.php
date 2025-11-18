@@ -4,7 +4,7 @@
 <div class="h-full overflow-y-auto">
     <div class="p-8">
         <!-- Header -->
-        <div class="bg-purple-500 rounded-2xl p-8 mb-8 text-white">
+        <div class="bg-gradient-to-r from-red-600 to-red-700 rounded-2xl p-8 mb-8 text-white">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -17,7 +17,7 @@
                         <p class="text-white/90 text-sm">Express your thoughts and feelings in a safe space</p>
                     </div>
                 </div>
-                <button onclick="openModal()" class="bg-white px-6 py-3 rounded-xl font-semibold hover:bg-purple-50 transition-colors flex items-center gap-2 shadow-lg flex-shrink-0" style="color: #000000;">
+                <button onclick="openModal()" class="bg-white px-6 py-3 rounded-xl font-semibold hover:bg-red-50 transition-colors flex items-center gap-2 shadow-lg flex-shrink-0" style="color: #000000;">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
@@ -29,17 +29,17 @@
         <!-- Statistics Cards -->
         <div class="grid grid-cols-3 gap-6 mb-8">
             <!-- Total Entries -->
-            <div class="rounded-2xl shadow-lg p-8" style="background-color: #e9d5ff;">
+            <div class="rounded-2xl shadow-lg p-8" style="background-color: #fee2e2;">
                 <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-purple-900 font-semibold">Total Entries</h3>
-                    <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background-color: #a855f7;">
+                    <h3 class="text-red-900 font-semibold">Total Entries</h3>
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background-color: #dc2626;">
                         <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                         </svg>
                     </div>
                 </div>
                 <p class="text-5xl font-bold text-gray-800 mb-2">{{ $totalEntries }}</p>
-                <p class="text-sm text-purple-600 font-medium">journal entries</p>
+                <p class="text-sm text-red-600 font-medium">journal entries</p>
             </div>
 
             <!-- This Month -->
@@ -74,14 +74,14 @@
         <!-- Journal Entries -->
         @if($entries->isEmpty())
             <div class="rounded-2xl shadow-sm p-16 text-center" style="background-color: #ffffff; border: 1px solid #e5e7eb;">
-                <div class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6" style="background-color: #f3e8ff; width: 96px; height: 96px; border-radius: 9999px; border: 2px solid #e9d5ff;">
-                    <svg class="w-12 h-12" fill="none" stroke="#a855f7" stroke-width="2.5" viewBox="0 0 24 24">
+                <div class="w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6" style="background-color: #fee2e2; width: 96px; height: 96px; border-radius: 9999px; border: 2px solid #fecaca;">
+                    <svg class="w-12 h-12" fill="none" stroke="#dc2626" stroke-width="2.5" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                     </svg>
                 </div>
                 <h3 class="text-2xl font-bold text-gray-800 mb-3">No journal entries yet</h3>
                 <p class="text-gray-600 mb-8 max-w-md mx-auto">Start writing to track your thoughts and feelings. Your entries are private and secure.</p>
-                <button onclick="openModal()" class="text-white px-8 py-4 rounded-xl font-semibold transition-all inline-flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105" style="background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);">
+                <button onclick="openModal()" class="text-white px-8 py-4 rounded-xl font-semibold transition-all inline-flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
@@ -159,7 +159,7 @@
             <div class="mb-6">
                 <label class="block text-gray-700 font-medium mb-2">Title</label>
                 <input type="text" name="title" required maxlength="255"
-                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition-all"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-200 focus:border-red-600 transition-all"
                        placeholder="Give your entry a title...">
             </div>
             
@@ -167,7 +167,7 @@
             <div class="mb-6">
                 <label class="block text-gray-700 font-medium mb-2">Content</label>
                 <textarea name="content" required rows="6"
-                          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition-all resize-none"
+                          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-200 focus:border-red-600 transition-all resize-none"
                           placeholder="What's on your mind?"></textarea>
             </div>
             
@@ -175,7 +175,7 @@
             <div class="mb-6">
                 <label class="block text-gray-700 font-medium mb-2">Tags <span class="text-gray-500 text-sm font-normal">(optional, comma-separated)</span></label>
                 <input type="text" name="tags"
-                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-200 focus:border-purple-400 transition-all"
+                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-200 focus:border-red-600 transition-all"
                        placeholder="e.g., anxiety, gratitude, reflection">
             </div>
             
@@ -185,31 +185,31 @@
                 <div class="flex gap-3 justify-between">
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="mood" value="1" class="hidden peer">
-                        <div class="w-full h-16 flex items-center justify-center text-4xl rounded-xl hover:bg-gray-100 peer-checked:bg-purple-100 peer-checked:ring-2 peer-checked:ring-purple-500 transition-all">
+                        <div class="w-full h-16 flex items-center justify-center text-4xl rounded-xl hover:bg-gray-100 peer-checked:bg-red-50 peer-checked:ring-2 peer-checked:ring-red-600 transition-all">
                             😢
                         </div>
                     </label>
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="mood" value="2" class="hidden peer">
-                        <div class="w-full h-16 flex items-center justify-center text-4xl rounded-xl hover:bg-gray-100 peer-checked:bg-purple-100 peer-checked:ring-2 peer-checked:ring-purple-500 transition-all">
+                        <div class="w-full h-16 flex items-center justify-center text-4xl rounded-xl hover:bg-gray-100 peer-checked:bg-red-50 peer-checked:ring-2 peer-checked:ring-red-600 transition-all">
                             😔
                         </div>
                     </label>
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="mood" value="3" class="hidden peer">
-                        <div class="w-full h-16 flex items-center justify-center text-4xl rounded-xl hover:bg-gray-100 peer-checked:bg-purple-100 peer-checked:ring-2 peer-checked:ring-purple-500 transition-all">
+                        <div class="w-full h-16 flex items-center justify-center text-4xl rounded-xl hover:bg-gray-100 peer-checked:bg-red-50 peer-checked:ring-2 peer-checked:ring-red-600 transition-all">
                             😐
                         </div>
                     </label>
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="mood" value="4" class="hidden peer">
-                        <div class="w-full h-16 flex items-center justify-center text-4xl rounded-xl hover:bg-gray-100 peer-checked:bg-purple-100 peer-checked:ring-2 peer-checked:ring-purple-500 transition-all">
+                        <div class="w-full h-16 flex items-center justify-center text-4xl rounded-xl hover:bg-gray-100 peer-checked:bg-red-50 peer-checked:ring-2 peer-checked:ring-red-600 transition-all">
                             🙂
                         </div>
                     </label>
                     <label class="cursor-pointer flex-1">
                         <input type="radio" name="mood" value="5" class="hidden peer">
-                        <div class="w-full h-16 flex items-center justify-center text-4xl rounded-xl hover:bg-gray-100 peer-checked:bg-purple-100 peer-checked:ring-2 peer-checked:ring-purple-500 transition-all">
+                        <div class="w-full h-16 flex items-center justify-center text-4xl rounded-xl hover:bg-gray-100 peer-checked:bg-red-50 peer-checked:ring-2 peer-checked:ring-red-600 transition-all">
                             😊
                         </div>
                     </label>
@@ -217,7 +217,7 @@
             </div>
             
             <!-- Submit Button -->
-            <button type="submit" class="w-full py-4 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:scale-105" style="background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%); color: #ffffff;">
+            <button type="submit" class="w-full py-4 rounded-xl font-semibold transition-all shadow-lg hover:shadow-xl transform hover:scale-105" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); color: #ffffff;">
                 Save Entry
             </button>
         </form>

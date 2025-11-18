@@ -50,18 +50,40 @@ class AuthController extends Controller
             'all_data' => $request->all()
         ]);
 
-        $request->validate([
+        // Define validation rules
+        $rules = [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Password::min(8)],
             'user_type' => 'required|in:Student,Administrator',
-        ]);
+        ];
+
+        // Add email and college validation based on user type
+        if ($request->user_type === 'Student') {
+            $rules['email'] = [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                'unique:users',
+                'regex:/^\d{2}-\d{5}@g\.batstate-u\.edu\.ph$/'
+            ];
+            $rules['college'] = 'required|string|in:College of Engineering,College of Engineering Technology,College of Informatics and Computing Sciences,College of Architecture, Fine Arts and Design';
+        } else {
+            $rules['email'] = 'required|string|email|max:255|unique:users';
+        }
+
+        $messages = [
+            'email.regex' => 'Student email must be in the format XX-XXXXX@g.batstate-u.edu.ph (e.g., 21-12345@g.batstate-u.edu.ph)',
+        ];
+
+        $request->validate($rules, $messages);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'user_type' => $request->user_type,
+            'college' => $request->user_type === 'Student' ? $request->college : null,
         ]);
 
         Auth::login($user);

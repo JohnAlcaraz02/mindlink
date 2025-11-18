@@ -3,7 +3,7 @@
 @section('content')
 <div class="h-screen flex flex-col">
     <!-- Chat Header -->
-    <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white px-6 py-4 flex-shrink-0">
+    <div class="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 flex-shrink-0">
         <div class="flex items-center gap-3">
             <div class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center">
                 <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -25,8 +25,8 @@
                 <div class="space-y-6">
                     <!-- Welcome Message -->
                     <div class="flex gap-3 mb-6">
-                        <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                        <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
                             </svg>
                         </div>
@@ -46,7 +46,7 @@
                             @if($message['role'] === 'user')
                                 <div class="flex justify-end gap-3 mb-6">
                                     <div class="flex-1 max-w-2xl text-right">
-                                        <div class="inline-block bg-purple-500 text-white rounded-2xl px-4 py-3 mb-1">
+                                        <div class="inline-block bg-red-600 text-white rounded-2xl px-4 py-3 mb-1">
                                             <p class="leading-relaxed">{{ $message['content'] }}</p>
                                         </div>
                                         <div class="text-xs text-gray-500">
@@ -61,8 +61,8 @@
                                 </div>
                             @elseif($message['role'] === 'assistant')
                                 <div class="flex gap-3 mb-6">
-                                    <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                                    <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
                                             <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
                                         </svg>
                                     </div>
@@ -86,16 +86,16 @@
         <div id="typing-indicator" class="bg-white hidden">
             <div class="max-w-4xl mx-auto px-6 pb-4">
                 <div class="flex gap-3">
-                    <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
                         </svg>
                     </div>
                     <div class="flex-1">
                         <div class="flex items-center gap-1">
-                            <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce"></div>
-                            <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
-                            <div class="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                            <div class="w-2 h-2 bg-red-400 rounded-full animate-bounce"></div>
+                            <div class="w-2 h-2 bg-red-400 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                            <div class="w-2 h-2 bg-red-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
                         </div>
                     </div>
                 </div>
@@ -108,13 +108,13 @@
                 <form id="ai-message-form" class="flex items-center gap-3">
                     <input type="text" 
                            id="ai-message-input"
-                           class="flex-1 bg-white text-gray-800 rounded-full py-3 px-4 border border-gray-300 focus:ring-2 focus:ring-purple-200 focus:border-purple-400 placeholder:text-gray-500 transition-all"
+                           class="flex-1 bg-white text-gray-800 rounded-full py-3 px-4 border border-gray-300 focus:ring-2 focus:ring-red-200 focus:border-red-600 placeholder:text-gray-500 transition-all"
                            placeholder="Type your message..."
                            required
                            maxlength="1000">
                     <button type="submit" 
                             id="send-button"
-                            class="w-10 h-10 bg-purple-500 hover:bg-purple-600 text-white rounded-full flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                            class="w-10 h-10 bg-red-600 hover:bg-red-700 text-white rounded-full flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                         </svg>
@@ -171,7 +171,7 @@
         const userMessageHtml = `
             <div class="flex justify-end gap-3 mb-6">
                 <div class="flex-1 max-w-2xl text-right">
-                    <div class="inline-block bg-purple-500 text-white rounded-2xl px-4 py-3 mb-1">
+                    <div class="inline-block bg-red-600 text-white rounded-2xl px-4 py-3 mb-1">
                         <p class="leading-relaxed">${text}</p>
                     </div>
                     <div class="text-xs text-gray-500">
@@ -224,8 +224,8 @@
             // Add AI response to chat
             const aiMessageHtml = `
                 <div class="flex gap-3 mb-6">
-                    <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <svg class="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 24 24">
+                    <div class="w-8 h-8 bg-red-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
                         </svg>
                     </div>

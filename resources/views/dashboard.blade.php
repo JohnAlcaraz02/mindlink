@@ -3,9 +3,9 @@
 @section('content')
 <div class="p-8">
     <!-- Header -->
-    <div class="bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl p-8 mb-8 text-white">
-        <h1 class="text-3xl font-bold mb-2">Welcome back, {{ auth()->user()->student_id ?? auth()->id() }}! 👋</h1>
-        <p class="text-purple-100">How are you feeling today?</p>
+    <div class="bg-gradient-to-r from-red-600 to-red-700 rounded-2xl p-8 mb-8 text-white">
+        <h1 class="text-3xl font-bold mb-2">Welcome back, {{ auth()->user()->name }}! 👋</h1>
+        <p class="text-red-100">How are you feeling today?</p>
     </div>
 
     <!-- Daily Mood Check-in -->
@@ -21,7 +21,7 @@
             
             <div class="flex flex-col items-center py-8">
                 <!-- Mood Emoji with Circle Background -->
-                <div class="w-40 h-40 rounded-full flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #e0e7ff 0%, #ddd6fe 100%);">
+                <div class="w-40 h-40 rounded-full flex items-center justify-center mb-6" style="background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);">
                     <span style="font-size: 6rem;">
                         @if($todayMood->mood_value == 1) 😢
                         @elseif($todayMood->mood_value == 2) 😔
@@ -31,11 +31,11 @@
                         @endif
                     </span>
                 </div>
-                
+
                 <!-- Mood Text -->
                 <p class="text-xl text-gray-700 mb-4">
-                    You're feeling 
-                    <span class="font-bold" style="color: #a855f7;">
+                    You're feeling
+                    <span class="font-bold" style="color: #dc2626;">
                         @if($todayMood->mood_value == 1) very sad
                         @elseif($todayMood->mood_value == 2) sad
                         @elseif($todayMood->mood_value == 3) okay
@@ -45,10 +45,10 @@
                     </span>
                     today
                 </p>
-                
+
                 <!-- Note Display -->
                 @if($todayMood->note)
-                    <div class="w-full max-w-lg bg-purple-50 rounded-2xl p-6 text-center">
+                    <div class="w-full max-w-lg bg-red-50 rounded-2xl p-6 text-center">
                         <p class="text-gray-700 italic">"{{ $todayMood->note }}"</p>
                     </div>
                 @endif
@@ -60,7 +60,7 @@
             <form action="{{ route('mood.store') }}" method="POST" id="moodForm">
                 @csrf
                 <div class="grid grid-cols-5 gap-4 mb-6">
-                <label class="flex flex-col items-center p-4 rounded-xl border-2 border-gray-200 hover:border-purple-500 transition-all cursor-pointer mood-option" data-mood="1">
+                <label class="flex flex-col items-center p-4 rounded-xl border-2 border-gray-200 hover:border-red-600 transition-all cursor-pointer mood-option" data-mood="1">
                     <input type="radio" name="mood" value="1" class="hidden mood-radio">
                     <div class="w-16 h-16 mx-auto mb-2 text-5xl flex items-center justify-center">
                         😢
@@ -68,7 +68,7 @@
                     <span class="text-sm font-medium text-gray-700">Very Sad</span>
                 </label>
 
-                <label class="flex flex-col items-center p-4 rounded-xl border-2 border-gray-200 hover:border-purple-500 transition-all cursor-pointer mood-option" data-mood="2">
+                <label class="flex flex-col items-center p-4 rounded-xl border-2 border-gray-200 hover:border-red-600 transition-all cursor-pointer mood-option" data-mood="2">
                     <input type="radio" name="mood" value="2" class="hidden mood-radio">
                     <div class="w-16 h-16 mx-auto mb-2 text-5xl flex items-center justify-center">
                         😔
@@ -76,7 +76,7 @@
                     <span class="text-sm font-medium text-gray-700">Sad</span>
                 </label>
 
-                <label class="flex flex-col items-center p-4 rounded-xl border-2 border-gray-200 hover:border-purple-500 transition-all cursor-pointer mood-option" data-mood="3">
+                <label class="flex flex-col items-center p-4 rounded-xl border-2 border-gray-200 hover:border-red-600 transition-all cursor-pointer mood-option" data-mood="3">
                     <input type="radio" name="mood" value="3" class="hidden mood-radio">
                     <div class="w-16 h-16 mx-auto mb-2 text-5xl flex items-center justify-center">
                         😐
@@ -84,7 +84,7 @@
                     <span class="text-sm font-medium text-gray-700">Okay</span>
                 </label>
 
-                <label class="flex flex-col items-center p-4 rounded-xl border-2 border-gray-200 hover:border-purple-500 transition-all cursor-pointer mood-option" data-mood="4">
+                <label class="flex flex-col items-center p-4 rounded-xl border-2 border-gray-200 hover:border-red-600 transition-all cursor-pointer mood-option" data-mood="4">
                     <input type="radio" name="mood" value="4" class="hidden mood-radio">
                     <div class="w-16 h-16 mx-auto mb-2 text-5xl flex items-center justify-center">
                         🙂
@@ -92,7 +92,7 @@
                     <span class="text-sm font-medium text-gray-700">Good</span>
                 </label>
 
-                <label class="flex flex-col items-center p-4 rounded-xl border-2 border-gray-200 hover:border-purple-500 transition-all cursor-pointer mood-option" data-mood="5">
+                <label class="flex flex-col items-center p-4 rounded-xl border-2 border-gray-200 hover:border-red-600 transition-all cursor-pointer mood-option" data-mood="5">
                     <input type="radio" name="mood" value="5" class="hidden mood-radio">
                     <div class="w-16 h-16 mx-auto mb-2 text-5xl flex items-center justify-center">
                         😊
@@ -102,10 +102,10 @@
             </div>
             
             <!-- Note Textarea -->
-            <textarea name="note" rows="4" placeholder="Add a note about how you're feeling (optional)..." class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-purple-500 focus:outline-none resize-none mb-4"></textarea>
-            
+            <textarea name="note" rows="4" placeholder="Add a note about how you're feeling (optional)..." class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-red-600 focus:outline-none resize-none mb-4"></textarea>
+
             <!-- Save Button -->
-            <button type="submit" class="w-full py-4 rounded-xl text-white font-semibold text-lg transition-all" style="background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%);" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+            <button type="submit" class="w-full py-4 rounded-xl text-white font-semibold text-lg transition-all" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
                 Save Mood Entry
             </button>
         </form>
@@ -115,10 +115,10 @@
     <!-- Statistics Cards -->
     <div class="grid grid-cols-3 gap-6 mb-8">
         <!-- Total Check-ins -->
-        <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-2xl p-6">
+        <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-6">
             <div class="flex items-center justify-between mb-4">
                 <h3 class="text-gray-700 font-medium">Total Check-ins</h3>
-                <div class="w-10 h-10 bg-purple-500 rounded-xl flex items-center justify-center">
+                <div class="w-10 h-10 bg-red-600 rounded-xl flex items-center justify-center">
                     <span class="text-xl">😊</span>
                 </div>
             </div>
@@ -160,7 +160,7 @@
     </div>
 
     <!-- Daily Wellness Tip -->
-    <div class="bg-purple-500 rounded-2xl p-8 text-white">
+    <div class="bg-red-600 rounded-2xl p-8 text-white">
         <div class="flex items-center gap-3 mb-4">
             <span class="text-2xl">💡</span>
             <h2 class="text-2xl font-bold">Daily Wellness Tip</h2>
@@ -182,12 +182,12 @@
         option.addEventListener('click', function() {
             // Remove selected state from all options
             document.querySelectorAll('.mood-option').forEach(opt => {
-                opt.classList.remove('border-purple-500', 'bg-purple-50');
+                opt.classList.remove('border-red-600', 'bg-red-50');
                 opt.classList.add('border-gray-200');
             });
             // Add selected state to clicked option
             this.classList.remove('border-gray-200');
-            this.classList.add('border-purple-500', 'bg-purple-50');
+            this.classList.add('border-red-600', 'bg-red-50');
         });
     });
 
@@ -203,12 +203,12 @@
             datasets: [{
                 label: 'Mood',
                 data: moodData.length > 0 ? moodData : [0],
-                borderColor: '#a855f7',
-                backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                borderColor: '#dc2626',
+                backgroundColor: 'rgba(220, 38, 38, 0.1)',
                 tension: 0.4,
                 fill: true,
                 pointRadius: 6,
-                pointBackgroundColor: '#a855f7',
+                pointBackgroundColor: '#dc2626',
                 pointBorderColor: '#fff',
                 pointBorderWidth: 2
             }]

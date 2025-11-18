@@ -52,7 +52,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/resources', function() {
         return view('resources.index');
     })->name('resources.index');
-    
+
+    // Profile routes
+    Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+    Route::put('/profile', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
     // Admin routes
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });

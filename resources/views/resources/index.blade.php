@@ -3,7 +3,7 @@
 @section('content')
 <div class="p-8 space-y-8">
     <!-- Hero -->
-    <div class="rounded-3xl p-8 text-white shadow-xl mb-8" style="background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);">
+    <div class="rounded-3xl p-8 text-white shadow-xl mb-8" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
         <div class="flex items-center gap-3">
             <div class="text-4xl">📚</div>
             <div>
@@ -304,7 +304,7 @@
     </div>
 
     <!-- Daily Wellness Tips -->
-    <div class="rounded-3xl p-8 text-white shadow-xl mt-8" style="background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);">
+    <div class="rounded-3xl p-8 text-white shadow-xl mt-8" style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);">
         <div class="flex items-center gap-3 mb-6">
             <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                 <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>

@@ -37,12 +37,9 @@
         .logo {
             width: 56px;
             height: 56px;
-            background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
-            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
         }
 
         .logo-text h1 {
@@ -72,7 +69,7 @@
 
         .user-role {
             font-size: 13px;
-            color: #a855f7;
+            color: #dc2626;
         }
 
         .logout-btn {
@@ -110,7 +107,7 @@
         }
 
         .hero-banner {
-            background: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
             padding: 48px;
             border-radius: 24px;
             color: white;
@@ -168,7 +165,7 @@
             font-size: 20px;
         }
 
-        .stat-icon.purple { background: #f3e8ff; color: #a855f7; }
+        .stat-icon.purple { background: #fee2e2; color: #dc2626; }
         .stat-icon.blue { background: #dbeafe; color: #3b82f6; }
         .stat-icon.green { background: #d1fae5; color: #10b981; }
         .stat-icon.yellow { background: #fef3c7; color: #f59e0b; }
@@ -272,7 +269,9 @@
     <!-- Header -->
     <div class="header">
         <div class="logo-section">
-            <div class="logo">🧠</div>
+            <div class="logo">
+                <img src="{{ asset('images/batstateu-logo.png') }}" alt="BatStateU Logo" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
             <div class="logo-text">
                 <h1>MindLink</h1>
                 <p>Mental Health Support Hub</p>
@@ -300,6 +299,82 @@
             <div class="hero-banner">
                 <h2><i class="fas fa-shield-alt"></i> Admin Dashboard</h2>
                 <p>Monitor platform activity and user engagement</p>
+            </div>
+
+            <!-- College Stress Comparison -->
+            <div style="background: white; padding: 24px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                <h3 style="font-size: 18px; font-weight: 700; color: #1f2937; margin-bottom: 16px;">
+                    <i class="fas fa-chart-bar" style="color: #dc2626; margin-right: 8px;"></i>College Stress Level Comparison
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px;">
+                    @foreach($collegeStats as $stat)
+                        <div style="padding: 16px; border-radius: 10px; border: 2px solid
+                            @if($stat['stress_level'] === 'Low') #10b981
+                            @elseif($stat['stress_level'] === 'Moderate') #f59e0b
+                            @elseif($stat['stress_level'] === 'High') #ef4444
+                            @else #991b1b
+                            @endif; background:
+                            @if($stat['stress_level'] === 'Low') #f0fdf4
+                            @elseif($stat['stress_level'] === 'Moderate') #fffbeb
+                            @elseif($stat['stress_level'] === 'High') #fef2f2
+                            @else #fef2f2
+                            @endif;">
+                            <div style="font-weight: 700; font-size: 14px; color: #1f2937; margin-bottom: 8px;">{{ $stat['short_name'] }}</div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-size: 28px; font-weight: 800; color:
+                                    @if($stat['stress_level'] === 'Low') #10b981
+                                    @elseif($stat['stress_level'] === 'Moderate') #f59e0b
+                                    @elseif($stat['stress_level'] === 'High') #ef4444
+                                    @else #991b1b
+                                    @endif;">{{ number_format($stat['avg_mood'], 1) }}</span>
+                                <span style="font-size: 12px; color: #6b7280;">/ 5.0</span>
+                            </div>
+                            <div style="margin-bottom: 8px;">
+                                <div style="background: #e5e7eb; height: 8px; border-radius: 4px; overflow: hidden;">
+                                    <div style="background:
+                                        @if($stat['stress_level'] === 'Low') #10b981
+                                        @elseif($stat['stress_level'] === 'Moderate') #f59e0b
+                                        @elseif($stat['stress_level'] === 'High') #ef4444
+                                        @else #991b1b
+                                        @endif; height: 100%; width: {{ ($stat['avg_mood'] / 5) * 100 }}%; transition: width 0.3s;"></div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 12px;">
+                                <span style="font-weight: 600; color:
+                                    @if($stat['stress_level'] === 'Low') #10b981
+                                    @elseif($stat['stress_level'] === 'Moderate') #f59e0b
+                                    @elseif($stat['stress_level'] === 'High') #ef4444
+                                    @else #991b1b
+                                    @endif;">{{ $stat['stress_level'] }} Stress</span>
+                                <span style="color: #6b7280;">{{ $stat['student_count'] }} students</span>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                @if(count($collegeStats) === 0)
+                    <p style="text-align: center; color: #6b7280; padding: 40px 0;">No data available for college comparison.</p>
+                @endif
+            </div>
+
+            <!-- College Filter -->
+            <div style="background: white; padding: 20px; border-radius: 12px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);">
+                <form method="GET" action="{{ route('admin.dashboard') }}" style="display: flex; align-items: center; gap: 16px;">
+                    <label for="college" style="font-weight: 600; color: #1f2937; font-size: 14px;">
+                        <i class="fas fa-filter" style="margin-right: 8px; color: #dc2626;"></i>Filter by College:
+                    </label>
+                    <select name="college" id="college" onchange="this.form.submit()" style="flex: 1; max-width: 400px; padding: 10px 16px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 14px; background: white; cursor: pointer;">
+                        <option value="all" {{ $selectedCollege === 'all' ? 'selected' : '' }}>All Colleges</option>
+                        <option value="College of Engineering" {{ $selectedCollege === 'College of Engineering' ? 'selected' : '' }}>College of Engineering</option>
+                        <option value="College of Engineering Technology" {{ $selectedCollege === 'College of Engineering Technology' ? 'selected' : '' }}>College of Engineering Technology</option>
+                        <option value="College of Informatics and Computing Sciences" {{ $selectedCollege === 'College of Informatics and Computing Sciences' ? 'selected' : '' }}>College of Informatics and Computing Sciences</option>
+                        <option value="College of Architecture, Fine Arts and Design" {{ $selectedCollege === 'College of Architecture, Fine Arts and Design' ? 'selected' : '' }}>College of Architecture, Fine Arts and Design</option>
+                    </select>
+                    @if($selectedCollege !== 'all')
+                        <a href="{{ route('admin.dashboard') }}" style="padding: 10px 16px; background: #f3f4f6; border-radius: 8px; color: #6b7280; text-decoration: none; font-size: 14px; transition: all 0.2s;">
+                            <i class="fas fa-times"></i> Clear Filter
+                        </a>
+                    @endif
+                </form>
             </div>
 
             <!-- Stats Grid -->
@@ -394,7 +469,7 @@
                                         <span style="background: #1f2937; color: white; padding: 4px 12px; border-radius: 12px; font-size: 13px; font-weight: 600;">{{ $room['count'] }} messages</span>
                                     </div>
                                     <div style="width: 100%; height: 8px; background: #f3f4f6; border-radius: 4px; overflow: hidden;">
-                                        <div style="width: {{ $room['percentage'] }}%; height: 100%; background: linear-gradient(90deg, #a855f7, #ec4899); border-radius: 4px;"></div>
+                                        <div style="width: {{ $room['percentage'] }}%; height: 100%; background: linear-gradient(90deg, #dc2626, #b91c1c); border-radius: 4px;"></div>
                                     </div>
                                 </div>
                             @endforeach
@@ -468,7 +543,7 @@
             </div>
 
             <!-- Privacy Notice -->
-            <div style="background: linear-gradient(135deg, #a855f7 0%, #3b82f6 100%); padding: 24px 32px; border-radius: 16px; color: white; display: flex; align-items: start; gap: 12px;">
+            <div style="background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%); padding: 24px 32px; border-radius: 16px; color: white; display: flex; align-items: start; gap: 12px;">
                 <div style="font-size: 24px; flex-shrink: 0;">🔒</div>
                 <div>
                     <strong style="font-size: 16px;">Privacy First:</strong>
@@ -492,8 +567,8 @@
                     {
                         label: 'Active Users',
                         data: {!! json_encode($activityData['activeUsers']) !!},
-                        borderColor: '#a855f7',
-                        backgroundColor: 'rgba(168, 85, 247, 0.1)',
+                        borderColor: '#dc2626',
+                        backgroundColor: 'rgba(220, 38, 38, 0.1)',
                         tension: 0.4,
                         fill: false
                     },
@@ -555,7 +630,7 @@
                 datasets: [{
                     label: 'Frequency',
                     data: {!! json_encode($topicData) !!},
-                    backgroundColor: '#a855f7',
+                    backgroundColor: '#dc2626',
                     borderRadius: 8,
                     barThickness: 80
                 }]
