@@ -1,0 +1,117 @@
+MINDLINK RENDER DEPLOYMENT CHECKLIST
+====================================
+
+STEP 1: PREPARE CODE
+□ Code is ready and tested locally
+□ All files committed to git
+□ .env.example file exists
+□ Dockerfile is correct (no merge conflicts)
+
+STEP 2: PUSH TO GITHUB
+□ Created GitHub repository: https://github.com/YOUR_USERNAME/mindlink
+□ Pushed code: git push origin main
+□ Repository is accessible
+
+STEP 3: RENDER DATABASE
+□ Signed up/logged into Render.com
+□ Created PostgreSQL database named "mindlink-db"
+□ Copied Internal Database URL
+□ Database status: Available ✓
+
+Database Details (save these):
+- Host: ___________________________________
+- Port: 5432
+- Database: mindlink
+- Username: ___________________________________
+- Password: ___________________________________
+
+STEP 4: RENDER WEB SERVICE
+□ Created new Web Service
+□ Connected GitHub repository
+□ Selected Docker runtime
+□ Selected Free tier
+
+STEP 5: ENVIRONMENT VARIABLES
+□ APP_NAME=MindLink
+□ APP_ENV=production
+□ APP_DEBUG=false
+□ APP_KEY=base64:_________________________ (generated with: php artisan key:generate --show)
+□ APP_URL=https://mindlink.onrender.com
+□ DB_CONNECTION=pgsql
+□ DB_HOST=_________________________________
+□ DB_PORT=5432
+□ DB_DATABASE=mindlink
+□ DB_USERNAME=_____________________________
+□ DB_PASSWORD=_____________________________
+□ SESSION_DRIVER=database
+□ QUEUE_CONNECTION=database
+□ CACHE_STORE=database
+□ LOG_CHANNEL=errorlog
+
+STEP 6: DEPLOYMENT
+□ Service is building (check logs)
+□ Build completed successfully
+□ Service status: Live ✓
+□ URL works: https://mindlink.onrender.com
+
+STEP 7: TESTING
+□ Login page loads
+□ Created admin account
+□ Created student account (with college email format)
+□ Tested daily mood check-in
+□ Tested journal entry
+□ Tested profile update
+□ Admin dashboard accessible
+□ College filtering works
+
+STEP 8: PRODUCTION READY
+□ APP_DEBUG is false
+□ SSL is enabled (automatic)
+□ Migrations completed
+□ All features tested
+□ Error logging works
+
+OPTIONAL
+□ Custom domain configured
+□ Monitoring/alerts set up
+□ Backup strategy in place
+
+IMPORTANT URLS
+==============
+Render Dashboard: https://dashboard.render.com
+Your App: https://mindlink.onrender.com (or your custom domain)
+GitHub Repo: https://github.com/YOUR_USERNAME/mindlink
+
+USEFUL COMMANDS
+===============
+Generate APP_KEY locally:
+  php artisan key:generate --show
+
+Manual migration (in Render Shell):
+  php artisan migrate --force
+
+Clear cache (in Render Shell):
+  php artisan config:clear
+  php artisan cache:clear
+  php artisan view:clear
+
+Update deployment:
+  git add .
+  git commit -m "Update message"
+  git push origin main
+
+SUPPORT
+=======
+Full Guide: See RENDER_DEPLOYMENT.md
+Render Docs: https://render.com/docs
+Render Community: https://community.render.com
+
+NOTES
+=====
+- Free tier spins down after 15 min inactivity
+- First request after sleep takes 30-60 seconds
+- Database: 1GB free storage
+- Bandwidth: 100GB/month free
+
+DEPLOYMENT DATE: _______________
+DEPLOYED BY: ___________________
