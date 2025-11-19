@@ -3,33 +3,47 @@ set -e
 
 echo "Starting MindLink deployment..."
 
-# Wait for database to be ready
-echo "Waiting for database connection..."
-max_attempts=30
-attempt=0
+# Simple database connection check with timeout
+echo "Testing database connection..."
+timeout=60
+elapsed=0
 
-until php artisan migrate:status 2>/dev/null || [ $attempt -eq $max_attempts ]; do
-    attempt=$((attempt + 1))
-    echo "Attempt $attempt/$max_attempts: Database not ready, waiting..."
-    sleep 2
+while [ $elapsed -lt $timeout ]; do
+    if php -r "
+        try {
+            \$pdo = new PDO(
+                'pgsql:host=' . getenv('DB_HOST') . ';port=' . getenv('DB_PORT') . ';dbname=' . getenv('DB_DATABASE'),
+                getenv('DB_USERNAME'),
+                getenv('DB_PASSWORD')
+            );
+            exit(0);
+        } catch (Exception \$e) {
+            exit(1);
+        }
+    " 2>/dev/null; then
+        echo "✓ Database connection successful!"
+        break
+    fi
+
+    echo "Waiting for database... (${elapsed}s/${timeout}s)"
+    sleep 3
+    elapsed=$((elapsed + 3))
 done
 
-if [ $attempt -eq $max_attempts ]; then
-    echo "Warning: Could not connect to database after $max_attempts attempts"
-    echo "App will start but may not function correctly"
-else
-    echo "Database connection successful!"
-
-    # Run migrations
-    echo "Running database migrations..."
-    php artisan migrate --force --no-interaction
-
-    # Cache configuration
-    echo "Caching configuration..."
-    php artisan config:cache
-    php artisan route:cache
-    php artisan view:cache
+if [ $elapsed -ge $timeout ]; then
+    echo "⚠ Warning: Database connection timeout. Starting anyway..."
 fi
 
+# Run migrations (will create migrations table if it doesn't exist)
+echo "Running database migrations..."
+php artisan migrate --force --no-interaction
+
+# Cache configuration
+echo "Optimizing application..."
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+echo "✓ Application ready!"
 echo "Starting Apache server..."
 exec apache2-foreground
