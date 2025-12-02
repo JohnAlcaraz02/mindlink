@@ -67,7 +67,7 @@ class AuthController extends Controller
                 'unique:users',
                 'regex:/^\d{2}-\d{5}@g\.batstate-u\.edu\.ph$/'
             ];
-            $rules['college'] = 'required|string|in:College of Engineering,College of Engineering Technology,College of Informatics and Computing Sciences,College of Architecture, Fine Arts and Design';
+            $rules['college'] = 'required|string|in:College of Engineering,College of Engineering Technology,College of Informatics and Computing Sciences,College of Architecture Fine Arts and Design';
         } else {
             $rules['email'] = 'required|string|email|max:255|unique:users';
         }

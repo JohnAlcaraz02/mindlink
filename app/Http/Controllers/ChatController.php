@@ -72,14 +72,18 @@ class ChatController extends Controller
         $key = config('services.openai.key');
 
         try {
-            $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . ($key ?: 'ollama'),
-                'Content-Type' => 'application/json',
-            ])->post(rtrim($base, '/') . '/chat/completions', [
-                'model' => $model,
-                'messages' => $messages,
-                'stream' => false,
-            ])->throw();
+            // Increase timeout for AI API requests (default is 30s)
+            set_time_limit(120);
+
+            $response = Http::timeout(120)
+                ->withHeaders([
+                    'Authorization' => 'Bearer ' . ($key ?: 'ollama'),
+                    'Content-Type' => 'application/json',
+                ])->post(rtrim($base, '/') . '/chat/completions', [
+                    'model' => $model,
+                    'messages' => $messages,
+                    'stream' => false,
+                ])->throw();
 
             $data = $response->json();
             $assistant = $data['choices'][0]['message']['content'] ?? 'Sorry, I could not generate a response.';

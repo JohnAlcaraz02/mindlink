@@ -367,7 +367,7 @@
                         <option value="College of Engineering" {{ $selectedCollege === 'College of Engineering' ? 'selected' : '' }}>College of Engineering</option>
                         <option value="College of Engineering Technology" {{ $selectedCollege === 'College of Engineering Technology' ? 'selected' : '' }}>College of Engineering Technology</option>
                         <option value="College of Informatics and Computing Sciences" {{ $selectedCollege === 'College of Informatics and Computing Sciences' ? 'selected' : '' }}>College of Informatics and Computing Sciences</option>
-                        <option value="College of Architecture, Fine Arts and Design" {{ $selectedCollege === 'College of Architecture, Fine Arts and Design' ? 'selected' : '' }}>College of Architecture, Fine Arts and Design</option>
+                        <option value="College of Architecture Fine Arts and Design" {{ $selectedCollege === 'College of Architecture Fine Arts and Design' ? 'selected' : '' }}>College of Architecture Fine Arts and Design</option>
                     </select>
                     @if($selectedCollege !== 'all')
                         <a href="{{ route('admin.dashboard') }}" style="padding: 10px 16px; background: #f3f4f6; border-radius: 8px; color: #6b7280; text-decoration: none; font-size: 14px; transition: all 0.2s;">
@@ -604,7 +604,7 @@
                         beginAtZero: true,
                         max: 120,
                         ticks: {
-                            stepSize: 30
+                            stepSize: 10
                         },
                         grid: {
                             color: '#e5e7eb',

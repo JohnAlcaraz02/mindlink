@@ -26,17 +26,23 @@
                 <div class="space-y-2">
                     <div class="flex items-center gap-2">
                         <span class="text-lg">📞</span>
-                        <span class="font-semibold text-lg">988</span>
-                        <span class="text-white/90">– Suicide & Crisis Lifeline (24/7)</span>
+                        <span class="font-semibold text-lg">1553</span>
+                        <span class="text-white/90">– NCMH Crisis Hotline (24/7, Toll-free from Luzon landlines)</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <span class="text-lg">🚑</span>
+                        <span class="text-lg">📱</span>
+                        <span class="font-semibold text-lg">0917-899-8727 (Globe/TM)</span>
+                        <span class="text-white/90">– NCMH Crisis Hotline Mobile (24/7)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">📱</span>
+                        <span class="font-semibold text-lg">0919-057-1553 (Smart/TNT)</span>
+                        <span class="text-white/90">– NCMH Crisis Hotline Mobile (24/7)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg">☎️</span>
                         <span class="font-semibold text-lg">911</span>
                         <span class="text-white/90">– Emergency Services</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-lg">💬</span>
-                        <span class="text-white/90">Text <span class="font-semibold">HOME to 741741</span> – Crisis Text Line</span>
                     </div>
                 </div>
             </div>
@@ -65,16 +71,16 @@
     <!-- Grid -->
     <div id="resource-grid" class="grid md:grid-cols-2 gap-6">
         <!-- Hotlines -->
-        <div class="resource-card" data-type="hotline" data-tags="crisis,emergency,help">
+        <div class="resource-card" data-type="hotline" data-tags="crisis,emergency,help,ncmh,philippines">
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex gap-4">
                 <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: #fee2e2; color:#ef4444;">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92V21a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 6.18 2 2 0 0 1 5 4h4.09a2 2 0 0 1 2 1.72c.12.86.31 1.7.57 2.5a2 2 0 0 1-.45 2.11L10.91 12a16 16 0 0 0 6.19 6.19l1.67-1.33a2 2 0 0 1 2.11-.45c.8.26 1.64.45 2.5.57A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
                 <div class="flex-1">
-                    <h3 class="font-bold text-gray-800">National Suicide & Crisis Lifeline (US)</h3>
-                    <p class="text-gray-600 text-sm mt-1">988 – Free, confidential support 24/7 for people in distress.</p>
+                    <h3 class="font-bold text-gray-800">NCMH National Crisis Hotline (Philippines)</h3>
+                    <p class="text-gray-600 text-sm mt-1">1553 / 0917-899-8727 / 0919-057-1553 – Free, confidential support 24/7 for mental health emergencies.</p>
                     <div class="flex gap-2 mt-3">
-                        <a href="https://988lifeline.org/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-white shadow" style="background: linear-gradient(135deg,#ef4444,#db2777);">
+                        <a href="https://doh.gov.ph/NCMH-Crisis-Hotline" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-white shadow" style="background: linear-gradient(135deg,#ef4444,#db2777);">
                             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6.62 10.79a15.91 15.91 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.11-.21 12.36 12.36 0 0 0 3.89.62 1 1 0 0 1 1 1V20a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 2 6.18 2 2 0 0 1 4 4h2.5a1 1 0 0 1 1 1 12.36 12.36 0 0 0 .62 3.89 1 1 0 0 1-.21 1.11z"/></svg>
                             Call / Visit
                         </a>
@@ -83,22 +89,37 @@
             </div>
         </div>
 
-        <div class="resource-card" data-type="hotline" data-tags="helpline,referral,substance">
+        <div class="resource-card" data-type="hotline" data-tags="helpline,crisis,philippines,hopeline">
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex gap-4">
                 <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: #fee2e2; color:#ef4444;">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92V21a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 6.18 2 2 0 0 1 5 4h4.09a2 2 0 0 1 2 1.72c.12.86.31 1.7.57 2.5a2 2 0 0 1-.45 2.11L10.91 12a16 16 0 0 0 6.19 6.19l1.67-1.33a2 2 0 0 1 2.11-.45c.8.26 1.64.45 2.5.57A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
                 <div class="flex-1">
-                    <h3 class="font-bold text-gray-800">SAMHSA National Helpline (US)</h3>
-                    <p class="text-gray-600 text-sm mt-1">1-800-662-HELP (4357) – Treatment referral and information service.</p>
+                    <h3 class="font-bold text-gray-800">Hopeline Philippines (24/7 Crisis Support)</h3>
+                    <p class="text-gray-600 text-sm mt-1">(02) 8804-4673 / 0917-558-4673 / 0918-873-4673 / 2919 (Globe/TM toll-free) – Suicide prevention and crisis support.</p>
                     <div class="mt-3">
-                        <a href="https://www.samhsa.gov/find-help/national-helpline" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-white shadow" style="background: linear-gradient(135deg,#ef4444,#db2777);">Visit</a>
+                        <a href="https://www.natashagoulbourn.org/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-white shadow" style="background: linear-gradient(135deg,#ef4444,#db2777);">Visit</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Philippines Hotlines (moved into grid) -->
+        <div class="resource-card" data-type="hotline" data-tags="philippines,ph,crisis,mental health,in touch">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex gap-4">
+                <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:#fee2e2;color:#ef4444;">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92V21a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 6.18 2 2 0 0 1 5 4h4.09a2 2 0 0 1 2 1.72c.12.86.31 1.7.57 2.5a2 2 0 0 1-.45 2.11L10.91 12a16 16 0 0 0 6.19 6.19l1.67-1.33a2 2 0 0 1 2.11-.45c.8.26 1.64.45 2.5.57A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div class="flex-1">
+                    <h3 class="font-bold text-gray-800">In Touch Crisis Line (Philippines)</h3>
+                    <p class="text-gray-600 text-sm mt-1">(02) 8893-1893 / 0917-863-1136 (Globe) / 0998-841-0053 (Smart) – Free, anonymous, confidential emotional support 24/7.</p>
+                    <div class="mt-3">
+                        <a href="https://in-touch.org/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-white shadow" style="background: linear-gradient(135deg,#ef4444,#db2777);">Visit Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="resource-card" data-type="hotline" data-tags="philippines,ph,crisis,mental health,DOH">
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex gap-4">
                 <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:#fee2e2;color:#ef4444;">
@@ -106,9 +127,9 @@
                 </div>
                 <div class="flex-1">
                     <h3 class="font-bold text-gray-800">DOH Mental Health Program (Philippines)</h3>
-                    <p class="text-gray-600 text-sm mt-1">Official DOH information and links to support services.</p>
+                    <p class="text-gray-600 text-sm mt-1">Official Department of Health mental health resources and programs for Filipinos.</p>
                     <div class="mt-3">
-                        <a href="https://doh.gov.ph/programs/mental-health-program" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-white shadow" style="background: linear-gradient(135deg,#ef4444,#db2777);">Visit DOH</a>
+                        <a href="https://doh.gov.ph/national-mental-health-program" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-white shadow" style="background: linear-gradient(135deg,#ef4444,#db2777);">Visit DOH</a>
                     </div>
                 </div>
             </div>
@@ -120,63 +141,63 @@
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92V21a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 6.18 2 2 0 0 1 5 4h4.09a2 2 0 0 1 2 1.72c.12.86.31 1.7.57 2.5a2 2 0 0 1-.45 2.11L10.91 12a16 16 0 0 0 6.19 6.19l1.67-1.33a2 2 0 0 1 2.11-.45c.8.26 1.64.45 2.5.57A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
                 <div class="flex-1">
-                    <h3 class="font-bold text-gray-800">Find A Helpline – Philippines Directory</h3>
-                    <p class="text-gray-600 text-sm mt-1">Verified helplines available in the Philippines.</p>
+                    <h3 class="font-bold text-gray-800">MentalHealthPH</h3>
+                    <p class="text-gray-600 text-sm mt-1">Comprehensive directory and resources for mental health support in the Philippines.</p>
                     <div class="mt-3">
-                        <a href="https://findahelpline.com/PH" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-white shadow" style="background: linear-gradient(135deg,#ef4444,#db2777);">Open Directory</a>
+                        <a href="https://mentalhealthph.org/help/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-white shadow" style="background: linear-gradient(135deg,#ef4444,#db2777);">Get Help</a>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Articles (Philippines-based) -->
-        <div class="resource-card" data-type="article" data-tags="mental health,philippines,education,mentalhealthph">
-            <a href="https://mentalhealthph.org/learn/what-is-mental-health/" target="_blank" rel="noopener" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex gap-4 hover:shadow-lg transition block">
+        <div class="resource-card" data-type="article" data-tags="resilience,mental health,philippines,mentalhealthph">
+            <a href="https://mentalhealthph.org/10-10-25/" target="_blank" rel="noopener" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex gap-4 hover:shadow-lg transition block">
                 <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:#e0e7ff;color:#4f46e5;">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 20l9-5-9-5-9 5 9 5zm0-10l9-5-9-5-9 5 9 5z"/></svg>
                 </div>
                 <div class="flex-1">
-                    <h3 class="font-bold text-gray-800 text-lg">What is Mental Health? (MentalHealthPH)</h3>
-                    <p class="text-gray-600 text-sm mt-2">Local primer on mental health concepts, stigma, and support in the Philippines.</p>
+                    <h3 class="font-bold text-gray-800 text-lg">Filipino Resilience & Mental Health (MentalHealthPH)</h3>
+                    <p class="text-gray-600 text-sm mt-2">Understanding resilience, disaster exposure, and mental health in the Philippines.</p>
                     <div class="flex flex-wrap gap-2 mt-3">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">mental health</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">resilience</span>
                         <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">philippines</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">education</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">mental health</span>
                     </div>
                 </div>
             </a>
         </div>
 
         <!-- More PH Articles -->
-        <div class="resource-card" data-type="article" data-tags="depression,philippines,mentalhealthph">
-            <a href="https://mentalhealthph.org/learn/depression/" target="_blank" rel="noopener" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex gap-4 hover:shadow-lg transition block">
+        <div class="resource-card" data-type="article" data-tags="youth,mental health,philippines,mentalhealthph">
+            <a href="https://mentalhealthph.org/08-10-25/" target="_blank" rel="noopener" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex gap-4 hover:shadow-lg transition block">
                 <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:#e0e7ff;color:#4f46e5;">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 20l9-5-9-5-9 5 9 5z"/></svg>
                 </div>
                 <div class="flex-1">
-                    <h3 class="font-bold text-gray-800 text-lg">Depression (MentalHealthPH)</h3>
-                    <p class="text-gray-600 text-sm mt-2">Signs, risk factors, and support resources in PH.</p>
+                    <h3 class="font-bold text-gray-800 text-lg">Youth and Mental Health (MentalHealthPH)</h3>
+                    <p class="text-gray-600 text-sm mt-2">Mental health crisis among Filipino youth: depression, self-harm, and support.</p>
                     <div class="flex flex-wrap gap-2 mt-3">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">depression</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">youth</span>
                         <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">philippines</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">mentalhealthph</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">depression</span>
                     </div>
                 </div>
             </a>
         </div>
 
-        <div class="resource-card" data-type="article" data-tags="who philippines,mental health,tips,philippines">
-            <a href="https://www.who.int/philippines/news/feature-stories/detail/looking-after-mental-health" target="_blank" rel="noopener" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex gap-4 hover:shadow-lg transition block">
+        <div class="resource-card" data-type="article" data-tags="mental health,education,philippines,doh">
+            <a href="https://doh.gov.ph/national-mental-health-program" target="_blank" rel="noopener" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 flex gap-4 hover:shadow-lg transition block">
                 <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background:#e0e7ff;color:#4f46e5;">
                     <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 20l9-5-9-5-9 5 9 5z"/></svg>
                 </div>
                 <div class="flex-1">
-                    <h3 class="font-bold text-gray-800 text-lg">Looking after your mental health (WHO Philippines)</h3>
-                    <p class="text-gray-600 text-sm mt-2">Tips and guidance from the WHO Philippines office.</p>
+                    <h3 class="font-bold text-gray-800 text-lg">National Mental Health Program (DOH)</h3>
+                    <p class="text-gray-600 text-sm mt-2">Learn about the Philippine Mental Health Act and government programs.</p>
                     <div class="flex flex-wrap gap-2 mt-3">
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">who philippines</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">mental health</span>
-                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">tips</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">mental health act</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">doh</span>
+                        <span class="px-3 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">philippines</span>
                     </div>
                 </div>
             </a>

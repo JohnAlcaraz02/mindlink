@@ -324,7 +324,7 @@
                     <option value="College of Engineering" {{ old('college', '') == 'College of Engineering' ? 'selected' : '' }}>College of Engineering</option>
                     <option value="College of Engineering Technology" {{ old('college', '') == 'College of Engineering Technology' ? 'selected' : '' }}>College of Engineering Technology</option>
                     <option value="College of Informatics and Computing Sciences" {{ old('college', '') == 'College of Informatics and Computing Sciences' ? 'selected' : '' }}>College of Informatics and Computing Sciences</option>
-                    <option value="College of Architecture, Fine Arts and Design" {{ old('college', '') == 'College of Architecture, Fine Arts and Design' ? 'selected' : '' }}>College of Architecture, Fine Arts and Design</option>
+                    <option value="College of Architecture Fine Arts and Design" {{ old('college', '') == 'College of Architecture Fine Arts and Design' ? 'selected' : '' }}>College of Architecture Fine Arts and Design</option>
                 </select>
                 @error('college')
                     <div class="error">{{ $message }}</div>

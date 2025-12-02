@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(php artisan migrate:fresh:*)"
+      "Bash(php artisan migrate:fresh:*)",
+      "WebSearch"
     ],
     "deny": [],
     "ask": []

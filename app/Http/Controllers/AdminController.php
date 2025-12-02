@@ -93,7 +93,7 @@ class AdminController extends Controller
             'College of Engineering',
             'College of Engineering Technology',
             'College of Informatics and Computing Sciences',
-            'College of Architecture, Fine Arts and Design'
+            'College of Architecture Fine Arts and Design'
         ];
 
         $stats = [];
@@ -128,7 +128,7 @@ class AdminController extends Controller
             'College of Engineering' => 'COE',
             'College of Engineering Technology' => 'CET',
             'College of Informatics and Computing Sciences' => 'CICS',
-            'College of Architecture, Fine Arts and Design' => 'CAFAD'
+            'College of Architecture Fine Arts and Design' => 'CAFAD'
         ];
 
         return $shortNames[$college] ?? $college;

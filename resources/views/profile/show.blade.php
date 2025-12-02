@@ -14,15 +14,67 @@
         </div>
     @endif
 
-    <!-- Profile Form -->
+    <!-- Profile Information -->
+    <div class="bg-white rounded-2xl shadow-sm p-8 mb-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">Account Information</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Name -->
+            <div>
+                <label class="block text-sm font-medium text-gray-500 mb-2">Full Name</label>
+                <p class="text-lg text-gray-800 font-medium">{{ $user->name }}</p>
+            </div>
+
+            <!-- Email -->
+            <div>
+                <label class="block text-sm font-medium text-gray-500 mb-2">Email Address</label>
+                <p class="text-lg text-gray-800 font-medium">{{ $user->email }}</p>
+            </div>
+
+            <!-- Account Type -->
+            <div>
+                <label class="block text-sm font-medium text-gray-500 mb-2">Account Type</label>
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
+                    @if($user->user_type === 'Student') bg-blue-100 text-blue-800
+                    @elseif($user->user_type === 'Volunteer Counselor') bg-green-100 text-green-800
+                    @else bg-purple-100 text-purple-800 @endif">
+                    {{ $user->user_type }}
+                </span>
+            </div>
+
+            <!-- College (Only for Students) -->
+            @if($user->user_type === 'Student')
+            <div>
+                <label class="block text-sm font-medium text-gray-500 mb-2">College</label>
+                <p class="text-lg text-gray-800 font-medium">{{ $user->college ?? 'Not specified' }}</p>
+            </div>
+            @endif
+
+            <!-- Member Since -->
+            <div>
+                <label class="block text-sm font-medium text-gray-500 mb-2">Member Since</label>
+                <p class="text-lg text-gray-800 font-medium">{{ $user->created_at->format('F j, Y') }}</p>
+            </div>
+
+            <!-- Last Updated -->
+            <div>
+                <label class="block text-sm font-medium text-gray-500 mb-2">Last Updated</label>
+                <p class="text-lg text-gray-800 font-medium">{{ $user->updated_at->format('F j, Y') }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Form -->
     <div class="bg-white rounded-2xl shadow-sm p-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-6">Edit Profile</h2>
+
         <form method="POST" action="{{ route('profile.update') }}">
             @csrf
             @method('PUT')
 
             <!-- Name Field -->
             <div class="mb-6">
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                 <input type="text"
                        id="name"
                        name="name"
@@ -36,7 +88,7 @@
 
             <!-- Email Field -->
             <div class="mb-6">
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                 <input type="email"
                        id="email"
                        name="email"
@@ -52,15 +104,6 @@
                 @enderror
             </div>
 
-            <!-- User Type (Read-only) -->
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Account Type</label>
-                <input type="text"
-                       value="{{ $user->user_type }}"
-                       readonly
-                       class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-100 text-gray-600 cursor-not-allowed">
-            </div>
-
             <!-- College Field (Only for Students) -->
             @if($user->user_type === 'Student')
             <div class="mb-6">
@@ -73,40 +116,13 @@
                     <option value="College of Engineering" {{ old('college', $user->college) == 'College of Engineering' ? 'selected' : '' }}>College of Engineering</option>
                     <option value="College of Engineering Technology" {{ old('college', $user->college) == 'College of Engineering Technology' ? 'selected' : '' }}>College of Engineering Technology</option>
                     <option value="College of Informatics and Computing Sciences" {{ old('college', $user->college) == 'College of Informatics and Computing Sciences' ? 'selected' : '' }}>College of Informatics and Computing Sciences</option>
-                    <option value="College of Architecture, Fine Arts and Design" {{ old('college', $user->college) == 'College of Architecture, Fine Arts and Design' ? 'selected' : '' }}>College of Architecture, Fine Arts and Design</option>
+                    <option value="College of Architecture Fine Arts and Design" {{ old('college', $user->college) == 'College of Architecture Fine Arts and Design' ? 'selected' : '' }}>College of Architecture Fine Arts and Design</option>
                 </select>
                 @error('college')
                     <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
             @endif
-
-            <!-- Password Section -->
-            <div class="border-t border-gray-200 pt-6 mt-6">
-                <h3 class="text-lg font-semibold text-gray-800 mb-4">Change Password (Optional)</h3>
-                <p class="text-sm text-gray-600 mb-4">Leave blank if you don't want to change your password</p>
-
-                <div class="mb-6">
-                    <label for="password" class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
-                    <input type="password"
-                           id="password"
-                           name="password"
-                           placeholder="Enter new password (min. 8 characters)"
-                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-600 transition-colors">
-                    @error('password')
-                        <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-6">
-                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2">Confirm New Password</label>
-                    <input type="password"
-                           id="password_confirmation"
-                           name="password_confirmation"
-                           placeholder="Confirm new password"
-                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-red-600 transition-colors">
-                </div>
-            </div>
 
             <!-- Submit Button -->
             <div class="flex items-center gap-4">
