@@ -602,9 +602,9 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 120,
+                        max: 20,
                         ticks: {
-                            stepSize: 10
+                            stepSize: 1
                         },
                         grid: {
                             color: '#e5e7eb',
@@ -646,9 +646,9 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 1.2,
+                        max: 3,
                         ticks: {
-                            stepSize: 0.25
+                            stepSize: 0.5
                         },
                         grid: {
                             color: '#e5e7eb',

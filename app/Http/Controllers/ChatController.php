@@ -30,11 +30,13 @@ class ChatController extends Controller
             'chat_type' => 'required|string|in:anonymous'
         ]);
 
+        $roomId = $request->room_id ?: 'general';
+
         $message = ChatMessage::create([
             'user_id' => Auth::id(),
             'message' => $request->message,
             'chat_type' => $request->chat_type,
-            'room_id' => $request->room_id,
+            'room_id' => $roomId,
             'anonymous_name' => session()->get('anonymous_name')
         ]);
 
@@ -59,6 +61,16 @@ class ChatController extends Controller
         ]);
 
         $history = session('ai_history', []);
+
+        $userId = Auth::id();
+
+        ChatMessage::create([
+            'user_id' => $userId,
+            'message' => $request->message,
+            'chat_type' => 'ai',
+            'room_id' => 'ai-assistant',
+            'anonymous_name' => null,
+        ]);
 
         // Build messages array with basic system prompt
         $messages = array_merge([

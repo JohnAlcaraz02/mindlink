@@ -173,30 +173,51 @@ class AdminController extends Controller
     
     private function getChatRoomActivity()
     {
-        // Get chat messages from last 24 hours grouped by room/category
-        // For now, we'll simulate room categories based on message content or use a default
         $last24h = now()->subHours(24);
         
-        // Count messages in different categories (you can customize this based on your chat structure)
-        $totalMessages = ChatMessage::where('created_at', '>=', $last24h)->count();
-        
-        // For demonstration, we'll create sample categories
-        // In a real app, you might have a 'room' or 'category' field in chat_messages
-        $rooms = [
-            ['name' => 'General Support', 'count' => ChatMessage::where('created_at', '>=', $last24h)->count()],
-            ['name' => 'Anxiety & Stress', 'count' => 0],
-            ['name' => 'Academic Pressure', 'count' => 0],
+        $roomLabels = [
+            'general' => 'General Support',
+            'anxiety' => 'Anxiety & Stress',
+            'academic' => 'Academic Pressure',
+            'counselor-sarah' => 'Counselor Sarah',
+            'ai-assistant' => 'AI Assistant',
         ];
-        
-        // Calculate max for percentage
-        $maxCount = max(array_column($rooms, 'count'));
-        $maxCount = $maxCount > 0 ? $maxCount : 1;
-        
-        // Add percentage
-        foreach ($rooms as &$room) {
-            $room['percentage'] = $maxCount > 0 ? ($room['count'] / $maxCount) * 100 : 0;
+
+        $counts = ChatMessage::where('created_at', '>=', $last24h)
+            ->select('room_id', DB::raw('COUNT(*) as count'))
+            ->groupBy('room_id')
+            ->pluck('count', 'room_id')
+            ->toArray();
+
+        $rooms = [];
+
+        foreach ($roomLabels as $roomKey => $label) {
+            $rooms[] = [
+                'name' => $label,
+                'count' => $counts[$roomKey] ?? 0,
+            ];
+            unset($counts[$roomKey]);
         }
-        
+
+        foreach ($counts as $roomKey => $count) {
+            $label = $roomKey ? ucwords(str_replace(['-', '_'], ' ', $roomKey)) : 'Unassigned';
+            $rooms[] = [
+                'name' => $label,
+                'count' => $count,
+            ];
+        }
+
+        $maxCount = array_reduce($rooms, function ($carry, $room) {
+            return max($carry, $room['count']);
+        }, 0);
+
+        $denominator = $maxCount > 0 ? $maxCount : 1;
+
+        foreach ($rooms as &$room) {
+            $room['percentage'] = $denominator > 0 ? round(($room['count'] / $denominator) * 100, 2) : 0;
+        }
+        unset($room);
+
         return $rooms;
     }
     
