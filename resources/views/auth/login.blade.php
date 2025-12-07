@@ -293,7 +293,7 @@
             </div>
 
             <div class="form-group" id="college_field" style="display: none;">
-                <label for="college">College</label>
+                <label for="college">Collegw</label>
                 <select id="college" name="college">
                     <option value="">Select your college</option>
                     <option value="College of Engineering" {{ old('college', '') == 'College of Engineering' ? 'selected' : '' }}>College of Engineering</option>
